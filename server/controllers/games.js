@@ -3,7 +3,7 @@ let mongoose = require('mongoose');
 // define the game model
 let game = require('../models/games');
 
-//
+// Read and display the Game List
 module.exports.ReadGameList = (req, res) => {
   // find all games in the games collection
   game.find( (err, games) => {
@@ -20,7 +20,7 @@ module.exports.ReadGameList = (req, res) => {
   });
 }
 
-//Displays the deatails page -
+// Displays the Details page - allowing users to add a new Game
 module.exports.DisplayAdd = (req, res) => {
   res.render('games/details', {
     title: "Add a new Game",
@@ -29,7 +29,7 @@ module.exports.DisplayAdd = (req, res) => {
   });
 }
 
-//
+// Create a new game and insert it into the db
 module.exports.CreateGame = (req, res) => {    
     let newGame = game({
       "name": req.body.name,
@@ -47,7 +47,7 @@ module.exports.CreateGame = (req, res) => {
     });
 }
 
-// Displays the details page to update a game - find the game by id
+// Displays the Details page to Update a Game - find the game by id and populate the form
 module.exports.DisplayEdit = (req, res) => {    
     try {
       // get a reference to the id from the url
@@ -73,7 +73,7 @@ module.exports.DisplayEdit = (req, res) => {
     }
 }
 
-//
+// Update an existing Game in the games collection
 module.exports.UpdateGame = (req, res) => {
     // get a reference to the id from the url
     let id = req.params.id;

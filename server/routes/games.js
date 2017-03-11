@@ -2,9 +2,13 @@
 let express = require('express');
 let router = express.Router();
 
+// define the game model
+let game = require('../models/games')
+
 // require the users controller for authentication
 let usersController = require('../controllers/users');
 
+// require the games controller to access games collection in findById
 let gamesController = require('../controllers/games');
 
 /* GET games List page. READ */
@@ -32,6 +36,5 @@ router.get('/:id', usersController.RequireAuth, (req, res, next) => {
 router.get('/delete/:id', usersController.RequireAuth, (req, res, next) => {
   gamesController.DeleteGame(req, res);
 });
-
 
 module.exports = router;

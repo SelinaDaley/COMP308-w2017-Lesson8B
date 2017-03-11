@@ -22,6 +22,7 @@ module.exports.DisplayLogin = (req, res) => {
   }
 }
 
+// Process the login request
 module.exports.ProcessLogin = () => {
   return passport.authenticate('local', {
     successRedirect: '/games',
@@ -77,11 +78,13 @@ module.exports.ProcessRegistration = (req, res) => {
     });
 }
 
+// Process the Logout request
 module.exports.ProcessLogout = (req, res) => {
   req.logout();
   res.redirect('/'); // redirect to the home page
 }
 
+// create a function to check if the user is authenticated
 module.exports.RequireAuth = (req, res, next) => {
   // check if the user is logged in
   if(!req.isAuthenticated()) {
